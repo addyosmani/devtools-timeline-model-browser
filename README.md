@@ -26,7 +26,7 @@ To build the source run `webpack` or `npm run build`.
 `dist` contains a globals-friendly `timeline-model-browser.js` build that can be dropped into any page. e.g:
 
 ```html
-<script src='dist/timeline-modal-browser.js'></script>
+<script src='dist/timeline-model-browser.js'></script>
 ```
 
 From there, you'll have access to a new global, `TimelineModelBrowser` that can be passed the contents of any
@@ -62,7 +62,7 @@ model.bottomUpGroupBy('URL') // accepts: None Category Subdomain Domain URL Even
 ## Demo
 
 A demo that uses the `dist` build is available in the `demo` directory. Fire up a local server in the repo root,
-then navigate to `/demo/` to try it out.
+then navigate to `/demo/` to try it out. Instructions are included in the index.
 
 Note: Your browser will need to support the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for the
 demo to correctly work. This should include browsers like Chrome, Opera, Firefox and the Safari Tech Preview.
