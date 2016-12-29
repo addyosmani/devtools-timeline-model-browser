@@ -1,6 +1,6 @@
 {
   "name": "devtools-timeline-model-browser",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Browser helper for parsing DevTools Timeline traces into structured profiling data models",
   "main": "dist/timeline-model-browser.js",
   "scripts": {
