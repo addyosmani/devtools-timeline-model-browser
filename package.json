@@ -1,6 +1,6 @@
 {
   "name": "devtools-timeline-model-browser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Browser helper for parsing DevTools Timeline traces into structured profiling data models",
   "main": "dist/timeline-model-browser.js",
   "scripts": {
@@ -33,7 +33,6 @@
   },
   "homepage": "https://github.com/addyosmani/devtools-timeline-model-browser#readme",
   "dependencies": {
-    "babili-webpack-plugin": "^0.0.7",
     "chrome-devtools-frontend": "1.0.434572",
     "devtools-timeline-model": "https://github.com/paulirish/devtools-timeline-model#b3ff8a6a3f2e73a6f24774a5528588c07ab2f855"
   },
@@ -41,6 +40,7 @@
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
+    "babili-webpack-plugin": "^0.0.7",
     "webpack": "^1.14.0"
   }
 }
