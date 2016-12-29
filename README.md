@@ -8,6 +8,8 @@ Browser-friendly library for parsing DevTools Timeline traces into structured pr
 Heavily inspired by [devtools-timeline-model](https://github.com/paulirish/devtools-timeline-model). 
 Should work in any modern browser.
 
+<img src='https://i.imgur.com/MpnWZea.jpg' width='80%'/>
+
 ## Develop
 
 ```sh
@@ -66,6 +68,15 @@ Note: Your browser will need to support the [Fetch API](https://developer.mozill
 demo to correctly work. This should include browsers like Chrome, Opera, Firefox and the Safari Tech Preview.
 
 ## Why
+
+#### Is this useful?
+
+The Chrome DevTools [Timeline](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool) allows you to save traces by
+right-clicking on the Timeline waterfall. The trace format of these files can be dense, but contains detailed information useful for anyone building
+web performance tooling. The goal of this module is to bring the benefits of the devtools-timeline-model package to the browser so folks can easily build
+tools that consume and reuse this data outside of writing a DevTools extension or using Node.
+
+#### This package?
 
 [devtools-timeline-model](https://github.com/paulirish/devtools-timeline-model) is an excellent package if you're trying
 to build tools targeting a Node environment that want to parse DevTools traces into an easy to reason about model. A few
