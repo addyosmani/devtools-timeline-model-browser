@@ -1,0 +1,75 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Demo</title>
+    <meta name="description" content="Timeline Model Browser demo">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<p>
+<ol>
+    <li>Open up the DevTools console</li>
+    <li>Paste in <code>loadTrace('timeline.json');</code></li>
+    <li>Trace breakdown should be shown!</li>
+</ol>
+</p>
+
+<script src='../dist/timeline-model-browser.js'></script>
+<script>
+    window.onload = function () {
+        window.loadTrace = function (path) {
+            fetch(path).then(response => {
+                return response.text()
+            }).then(text => {
+                reportTraceContent(text, 'filename.js');
+            });
+        }
+
+        if (!console.group) {
+            console.group = n => console.log(n, ':');
+            console.groupEnd = _ => console.log('');
+        }
+
+        function dumpTree(tree, timeValue) {
+            var result = new Map();
+            tree.children.forEach((value, key) => result.set(key, value[timeValue].toFixed(1)));
+            return result;
+        }
+
+        function reportTraceContent(trace, filename) {
+            var events = trace;
+            var model = new TimelineModelBrowser(events);
+
+            console.group(filename);
+            console.log(model.tracingModel());
+
+            console.log('Timeline model events:\n', model.timelineModel().mainThreadEvents().length);
+            // console.log('IR model interactions\n', model.interactionModel().interactionRecords().length);
+            console.log('Frame model frames:\n', model.frameModel().frames().length);
+            // console.log('Filmstrip model screenshots:\n', model.filmStripModel().frames().length);
+            // dumpScreenshot(model.filmStripModel());
+
+            // var topDown = model.topDown();
+            // console.log('Top down tree total time:\n', topDown.totalTime);
+            // console.log('Top down tree, not grouped:\n', dumpTree(topDown, 'totalTime'));
+
+            // console.log('Bottom up tree leaves:\n', [...model.bottomUp().children.entries()].length);
+            // var bottomUpURL = model.bottomUpGroupBy('URL');
+            // var secondTopCost = [...bottomUpURL.children.values()][1];
+            // console.log('bottom up tree, grouped by URL', dumpTree(bottomUpURL, 'selfTime'));
+            // console.log('Bottom up tree, grouped, 2nd top URL:\n', secondTopCost.totalTime.toFixed(2), secondTopCost.id);
+
+            var bottomUpSubdomain = model.bottomUpGroupBy('Subdomain');
+            console.log('Bottom up tree, grouped by top subdomain:\n', dumpTree(bottomUpSubdomain, 'selfTime'));
+
+            var bottomUpByName = model.bottomUpGroupBy('EventName');
+            console.log('Bottom up tree grouped by EventName:\n', dumpTree(bottomUpByName, 'selfTime'));
+
+            console.groupEnd(filename);
+        }
+    }
+</script>
+</body>
+</html>
