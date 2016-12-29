@@ -1,5 +1,9 @@
 # devtools-timeline-model-browser
 
+[![GitHub version](https://badge.fury.io/gh/addyosmani%2Fdevtools-timeline-model-browser.svg)](https://badge.fury.io/gh/addyosmani%2Fdevtools-timeline-model-browser)
+[![npm version](https://badge.fury.io/js/devtools-timeline-model-browser.svg)](https://badge.fury.io/js/devtools-timeline-model-browser)
+[![Dependency Status](https://david-dm.org/addyosmani/devtools-timeline-model-browser.svg)](https://david-dm.org/addyosmani/devtools-timeline-model-browser)
+
 Browser-friendly library for parsing DevTools Timeline traces into structured profiling data models.
 Heavily inspired by [devtools-timeline-model](https://github.com/paulirish/devtools-timeline-model). 
 Should work in any modern browser.

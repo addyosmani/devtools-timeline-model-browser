@@ -4,7 +4,7 @@
   "description": "Browser helper for parsing DevTools Timeline traces into structured profiling data models",
   "main": "dist/timeline-model-browser.js",
   "scripts": {
-    "build: "webpack"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
