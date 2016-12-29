@@ -11,21 +11,37 @@
 <p>
 <ol>
     <li>Open up the DevTools console</li>
-    <li>Paste in <code>loadTrace('timeline.json');</code></li>
-    <li>Trace breakdown should be shown!</li>
+    <li>Click 'Choose File/Browse' below and select a .json Timeline trace <i>(one is included in the demo
+        directory)</i>
+    </li>
+    <li>Awwh yeah. The trace breakdown should be shown in console!</li>
 </ol>
+<input type="file" id="selectFile"/>
 </p>
 
-<script src='../dist/timeline-model-browser.js'></script>
+<script src="../dist/timeline-model-browser.js"></script>
 <script>
     window.onload = function () {
-        window.loadTrace = function (path) {
-            fetch(path).then(response => {
-                return response.text()
-            }).then(text => {
-                reportTraceContent(text, 'filename.js');
-            });
-        }
+
+        // Alternative if folks want to fetch() a trace
+        //        window.loadTrace = function (path) {
+        //            fetch(path).then(response => {
+        //                return response.text()
+        //            }).then(text => {
+        //                reportTraceContent(text, 'filename.js');
+        //            });
+        //        }
+
+        var selectFile = document.querySelector('#selectFile');
+        selectFile.addEventListener('change', function (e) {
+            var files = e.target.files;
+            var file = files[0];
+            var reader = new FileReader();
+            reader.onload = function () {
+                reportTraceContent(this.result, 'trace');
+            }
+            reader.readAsText(file);
+        });
 
         if (!console.group) {
             console.group = n => console.log(n, ':');
@@ -55,11 +71,11 @@
             // console.log('Top down tree total time:\n', topDown.totalTime);
             // console.log('Top down tree, not grouped:\n', dumpTree(topDown, 'totalTime'));
 
-            // console.log('Bottom up tree leaves:\n', [...model.bottomUp().children.entries()].length);
-            // var bottomUpURL = model.bottomUpGroupBy('URL');
-            // var secondTopCost = [...bottomUpURL.children.values()][1];
-            // console.log('bottom up tree, grouped by URL', dumpTree(bottomUpURL, 'selfTime'));
-            // console.log('Bottom up tree, grouped, 2nd top URL:\n', secondTopCost.totalTime.toFixed(2), secondTopCost.id);
+            console.log('Bottom up tree leaves:\n', [...model.bottomUp().children.entries()].length);
+            var bottomUpURL = model.bottomUpGroupBy('URL');
+            var secondTopCost = [...bottomUpURL.children.values()][1];
+            console.log('bottom up tree, grouped by URL', dumpTree(bottomUpURL, 'selfTime'));
+            console.log('Bottom up tree, grouped, 2nd top URL:\n', secondTopCost.totalTime.toFixed(2), secondTopCost.id);
 
             var bottomUpSubdomain = model.bottomUpGroupBy('Subdomain');
             console.log('Bottom up tree, grouped by top subdomain:\n', dumpTree(bottomUpSubdomain, 'selfTime'));

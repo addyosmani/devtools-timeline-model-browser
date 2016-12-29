@@ -64,9 +64,6 @@ model.bottomUpGroupBy('URL') // accepts: None Category Subdomain Domain URL Even
 A demo that uses the `dist` build is available in the `demo` directory. Fire up a local server in the repo root,
 then navigate to `/demo/` to try it out. Instructions are included in the index.
 
-Note: Your browser will need to support the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for the
-demo to correctly work. This should include browsers like Chrome, Opera, Firefox and the Safari Tech Preview.
-
 ## Why
 
 #### Is this useful?
